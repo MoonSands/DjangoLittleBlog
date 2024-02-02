@@ -9,8 +9,8 @@ def index(request):
     context = {'posts':posts}
     return render(request, 'article_feed/index.html',context)
 
-def article(request,article_id):
-    art= get_object_or_404(feed, pk=article_id)
+def article(request,article_slug):
+    art= get_object_or_404(feed, slug = article_slug)
     context = {'title':art.title,
                'date':art.time_create,
                'content':art.content}
