@@ -9,6 +9,13 @@ def index(request):
     context = {'posts':posts}
     return render(request, 'article_feed/index.html',context)
 
+
+def cats(request,name):
+    posts = feed.objects.filter(category = name)
+    context = {'name': name,
+               'posts':posts,}
+    return render(request, 'article_feed/cat.html',context)
+
 def article(request,article_slug):
     art= get_object_or_404(feed, slug = article_slug)
     context = {'title':art.title,

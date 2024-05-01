@@ -19,9 +19,12 @@ from django.urls import path, include
 from article_feed.views import *
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('article_feed.urls')),
+    path('__debug__', include('debug_toolbar.urls')),
+
 ]
 
 handler404 = pageNotFound
