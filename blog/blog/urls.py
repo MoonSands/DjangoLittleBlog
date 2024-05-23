@@ -17,14 +17,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from article_feed.views import *
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 
 urlpatterns = [
+    path('', index, name='main'),
     path('admin/', admin.site.urls),
-    path('', include('article_feed.urls')),
-    path('__debug__', include('debug_toolbar.urls')),
+    path('api/', include('rest_framework.urls')),
+    path('api/post/', PostAPIView.as_view()),
+    path('api/post/create', PostCreateAPIView.as_view()),
+    path('api/post/<int:pk>', PostUPdateDeleteAPIView.as_view()),
+    path('api/docs/', DocsAPIView.as_view()),
+    path('api/docs/create', DocsCreateAPIView.as_view()),
+    path('api/docs/<int:pk>', DocsUPdateDeleteAPIView.as_view()),
+    path('api/products/', ProductAPIView.as_view()),
+    path('api/products/create', ProductCreateAPIView.as_view()),
+    path('api/products/<int:pk>', ProductUPdateDeleteAPIView.as_view()),
+    path('api/faq/', FAQAPIView.as_view()),
+    path('api/faq/create', FAQCreateAPIView.as_view()),
+    path('api/faq/<int:pk>', FAQUPdateDeleteAPIView.as_view()),
+    path('api/forms/', DataFromFormsAPIView.as_view()),
+    path('api/forms/<int:pk>', DataFromFormsSingleAPIView.as_view()),
 
 ]
 
-handler404 = pageNotFound
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
