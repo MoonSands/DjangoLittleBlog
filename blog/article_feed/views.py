@@ -19,13 +19,11 @@ class PostAPIView(generics.ListAPIView):
     queryset = post.objects.all()
     serializer_class = PostSerializer
 
-#class PostCreateAPIView(generics.CreateAPIView):
-#   permission_classes = [IsAuthenticated]
-#
-#   queryset = post.objects.all()
-#    serializer_class = PostSerializer
+class PostFileUploadAPIView(generics.CreateAPIView):
+   permission_classes = [IsAuthenticated]
 
-
+   queryset = postContentFilesUpload.objects.all()
+   serializer_class = PostFileUpload
 
 class PostCreateAPIView(generics.CreateAPIView):
     queryset = post.objects.all()

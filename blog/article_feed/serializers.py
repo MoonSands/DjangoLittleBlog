@@ -8,10 +8,10 @@ class CategorySerializer(serializers.ModelSerializer):
         model = postCategory
         fields = '__all__'
 
-#class PostContentSerializer(serializers.ModelSerializer):
- #   class Meta:
- #       model = postContent
- #       fields = '__all__'
+class PostFileUpload(serializers.ModelSerializer):
+    class Meta:
+        model = postContentFilesUpload
+        fields = '__all__'
 
 class PostSerializer(serializers.ModelSerializer):
     #category = serializers.PrimaryKeyRelatedField(many=False, queryset=postCategory.objects.all())

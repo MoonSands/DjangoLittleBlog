@@ -15,7 +15,7 @@ def upload_to(instance, filename):
     return '{foldername}/{filename}'.format(filename=filename,foldername=foldername)
 
 class postContentFilesUpload(models.Model):
-    file = models.FileField("/media/uploads/images/")
+    file = models.FileField(upload_to="/media/uploads/images/")
 
 
 class post(models.Model):
