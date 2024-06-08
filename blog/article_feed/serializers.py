@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from django.conf import settings
+import json
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,11 +14,15 @@ class CategorySerializer(serializers.ModelSerializer):
  #       fields = '__all__'
 
 class PostSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(many=False, queryset=postCategory.objects.all())
+    #category = serializers.PrimaryKeyRelatedField(many=False, queryset=postCategory.objects.all())
 
     class Meta:
         model = post
-        fields = ['id', 'title', 'preview_image', 'category', 'content', 'time_create', 'slug']
+        fields = '__all__'
+        #fields = ['id', 'title', 'preview_image', 'category', 'content', 'time_create', 'slug']
+   
+
+    
 
         
 class DocsSerializer(serializers.ModelSerializer):

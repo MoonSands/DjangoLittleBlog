@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'article_feed.apps.ArticleFeedConfig',
     'corsheaders',
+    'django_editorjs_fields',
 ]
 
 MIDDLEWARE = [
@@ -192,3 +193,7 @@ EMAIL_HOST_USER = 'tsenter.edinstvo@yandex.ru'
 EMAIL_HOST_PASSWORD = 'pxduzfwcgzktgilp'
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+EDITORJS_IMAGE_UPLOAD_PATH = 'uploads/images/'
+EDITORJS_IMAGE_UPLOAD_PATH_DATE = ''

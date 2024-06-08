@@ -25,19 +25,11 @@ class PostAPIView(generics.ListAPIView):
 #   queryset = post.objects.all()
 #    serializer_class = PostSerializer
 
-class PostCreateAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-    parser_classes = [MultiPartParser,FormParser]
 
-    def post(self,request,format=None):
-        print(request.data)
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class PostCreateAPIView(generics.CreateAPIView):
+    queryset = post.objects.all()
+    serializer_class = PostSerializer
 class PostUPdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = post.objects.all()
     serializer_class = PostSerializer
@@ -179,8 +171,9 @@ class CreateEmailAPIView(APIView):
                     username = settings.EMAIL_HOST_USER,
                     password = settings.EMAIL_HOST_PASSWORD,
                     use_ssl = True)
-                subject = f'Обращение от {data.get("name", None)}'
-                message =  f'{data.get("message",None)} \n \n Контакты для связи: \n Email: {data.get("email",None)} \n Телефон: {data.get("phone",None)}'
+                subject = 'Новое обращение!'
+                if data.get("name", None) or data.get("message",None) or data.get("phone",None):
+                    message =  f'Имя:{data.get("name", None)} \n \n {data.get("message",None)} \n \n Контакты для связи: \n Email: {data.get("email",None)} \n Телефон: {data.get("phone",None)}'
                 send_mail(
                     subject,
                     message,

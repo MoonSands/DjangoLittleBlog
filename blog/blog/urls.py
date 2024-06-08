@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('', index, name='main'),
     path('admin/', admin.site.urls),
+    path('editorjs/', include('django_editorjs_fields.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #Вход и выход, получение/обновление токена
@@ -52,10 +53,8 @@ urlpatterns = [
     path('api/groups/<int:pk>/', GroupsUpdateDeleteAPIView.as_view()),
     #ОТЧЕТЫ
     path('api/reports/', ReportsAPIView.as_view()),
-    ###
     #Получение отчетов в пределах определенной группы
     path('api/groups/reports-in-group/<int:pk>/', ReportsByGroupAPIView.as_view()),
-    ###
     path('api/reports/create/', ReportsCreateAPIView.as_view()),
     path('api/reports/<int:pk>/', ReportsUpdateDeleteAPIView.as_view()),
     
