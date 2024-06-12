@@ -19,7 +19,7 @@ class post(models.Model):
     preview_image = models.ImageField(upload_to = upload_to, default='posts/moon.jpg')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     category = models.CharField(max_length=10, choices=cat_choices, default='blog')
-    content = EditorJsJSONField(null=True)
+    content = EditorJsJSONField()
 
     def __str__(self):
         return self.title
