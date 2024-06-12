@@ -35,10 +35,16 @@ urlpatterns = [
     path('api/logout/', LogoutAPIView.as_view(), name='logout'),    
 
     #ПОСТЫ БЛОГА И ПРОЕКТОВ
+    #Все посты
     path('api/posts/', PostAPIView.as_view()),
+    #Посты по категориям
+    path('api/posts/blog/', BlogPostsAPIView.as_view()),
+    path('api/posts/projects/', ProjectsPostsAPIView.as_view()),
+
     path('api/posts/create/', PostCreateAPIView.as_view()),
     #Загрузка изображений
     path('api/posts/upload/', PostFileUploadAPIView.as_view()),
+
     path('api/posts/<int:pk>/', PostUPdateDeleteAPIView.as_view()),
 
     #ДОКУМЕНТЫ

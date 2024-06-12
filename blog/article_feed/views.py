@@ -28,6 +28,28 @@ class PostFileUploadAPIView(generics.CreateAPIView):
 class PostCreateAPIView(generics.CreateAPIView):
     queryset = post.objects.all()
     serializer_class = PostSerializer
+
+class BlogPostsAPIView(APIView):
+    
+    def get(self, request, format=None):
+        try:
+            filtered_objects = post.objects.filter(category='blog')
+            serializer = PostSerializer(filtered_objects, many=True)
+            return Response(serializer.data)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+class ProjectsPostsAPIView(APIView):
+    
+    def get(self, request, format=None):
+        try:
+            filtered_objects = post.objects.filter(category='projects')
+            serializer = PostSerializer(filtered_objects, many=True)
+            return Response(serializer.data)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 class PostUPdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = post.objects.all()
     serializer_class = PostSerializer

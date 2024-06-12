@@ -35,22 +35,22 @@ class dataFromFormsModelTest(TestCase):
     
     def test_str_representation(self):
         formdata = dataFromForms.objects.create(name='Bob', phone = 89612992003, email = "bob@email.com", message = 'hi')
-        expected_object_name = f'{formdata.name}: {formdata.message}'
+        expected_object_name = f'{formdata.email}'
         self.assertEqual(expected_object_name,str(formdata))
 
 class postsModelTest(TestCase):
     
     def test_str_representation(self):
-        post_ex = post.objects.create(title = 'TestPost')
+        post_ex = post.objects.create(title = 'TestPost', content = {})
         expected_object_name = '%s' % (post_ex.title)
         self.assertEqual(expected_object_name,str(post_ex))
 
-class postCategoryModelTest(TestCase):
+#class postCategoryModelTest(TestCase):
     
-    def test_str_representation(self):
-        cat = postCategory.objects.create(name='TestCat', slug='testcat')
-        expected_object_name = '%s' % (cat.name)
-        self.assertEqual(expected_object_name,str(cat))
+#    def test_str_representation(self):
+#        cat = postCategory.objects.create(name='TestCat', slug='testcat')
+#        expected_object_name = '%s' % (cat.name)
+#        self.assertEqual(expected_object_name,str(cat))
 
 class docsModelTest(TestCase):
     

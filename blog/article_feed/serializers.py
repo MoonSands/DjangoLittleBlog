@@ -3,10 +3,10 @@ from .models import *
 from django.conf import settings
 import json
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = postCategory
-        fields = '__all__'
+#class CategorySerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = postCategory
+#        fields = '__all__'
 
 class PostFileUpload(serializers.ModelSerializer):
     class Meta:
@@ -18,12 +18,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = post
-        fields = '__all__'
-        #fields = ['id', 'title', 'preview_image', 'category', 'content', 'time_create', 'slug']
-   
-
-    
-
+        fields = '__all__'   
         
 class DocsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,17 +31,10 @@ class ReportGroupSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 class ReportsSerializer(serializers.ModelSerializer):
-    group = serializers.PrimaryKeyRelatedField(many=False, queryset=reportsGroup.objects.all())
     class Meta:
         model = reports
         fields = ['id', 'name', 'date', 'file', 'group']
 
-        def get_group(self, obj):
-            group = obj.group
-            if group:
-                serializer = ReportGroupSerializer(group)
-                return serializer.data
-            return None
         
         
 class FAQSerializer(serializers.ModelSerializer):
